@@ -1,11 +1,19 @@
 package dev.codenmore.tilegame;
 
 
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+
 // the main class for the game containing the most important code
 public class Game implements Runnable {
 
     // game class will need an instance of Display class
     private Display display;
+
+
+    private BufferStrategy bs;
+    private Graphics g;
+
     public int width, height;
     public String title;
 
@@ -21,7 +29,7 @@ public class Game implements Runnable {
     }
 
     private  void render() {
-
+        bs = display.getCanvas().getBufferStrategy(); // this will set bs equal to whatever value BufferStrategy is 
     }
 
     // creation of game constructor

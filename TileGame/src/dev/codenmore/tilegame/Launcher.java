@@ -4,6 +4,7 @@ public class Launcher {
     // all this class will do is start up the game
 
     public static void main(String[] args) {
-        new Game("Tile Game", 400, 400);
+        Game game = new Game("Tile Game", 400, 400);
+        game.start();
     }
 }
