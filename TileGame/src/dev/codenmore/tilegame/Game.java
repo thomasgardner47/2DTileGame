@@ -12,7 +12,7 @@ public class Game implements Runnable {
 
 
     private BufferStrategy bs;
-    private Graphics g;
+    private Graphics g; // allows us to draw things to the object
 
     public int width, height;
     public String title;
@@ -20,6 +20,8 @@ public class Game implements Runnable {
     private boolean running = false;
     private Thread thread;
 
+
+    // init method is called when run method is called
     private void init() {
         display = new Display(title, width, height);
     }
@@ -29,7 +31,20 @@ public class Game implements Runnable {
     }
 
     private  void render() {
-        bs = display.getCanvas().getBufferStrategy(); // this will set bs equal to whatever value BufferStrategy is 
+        bs = display.getCanvas().getBufferStrategy(); // this will set bs equal to whatever value BufferStrategy is
+        if (bs == null) {
+            display.getCanvas().createBufferStrategy(3);
+            return;
+        }
+
+        g = bs.getDrawGraphics();
+        // draw here!
+
+        g.fillRect(0,0, width, height);
+
+        // end drawing
+        bs.show();
+        g.dispose();
     }
 
     // creation of game constructor
