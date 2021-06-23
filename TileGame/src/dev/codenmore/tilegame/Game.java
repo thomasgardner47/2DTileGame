@@ -42,13 +42,10 @@ public class Game implements Runnable {
         g.clearRect(0, 0, width, height);
 
         // draw here!
-
         g.setColor(Color.red);
         g.drawRect(10, 50, 50, 70);
         g.setColor(Color.green);
         g.fillRect(0,0,10,10);
-
-
 
         // end drawing
         bs.show();
@@ -63,21 +60,16 @@ public class Game implements Runnable {
         this.title = title;
 
         // intialise instance of Display class inside Game constructor
-
     }
 
     public void run() { // in order to allow this class too implement Runnable which in turn enables threading we need a public run method
 
         init();
-
         while (running) { // while running is true we want the tick and render methods to keep running
             tick();
             render();
         }
-
         Stop(); // just incase the game doesn't stop the first time
-
-
     }
 
     // only use the synchronized keyword when working will threads directly
@@ -86,7 +78,6 @@ public class Game implements Runnable {
         if (running) {
             return;
         }
-
         running = true;
         thread = new Thread(this);
         thread.start();
@@ -103,8 +94,6 @@ public class Game implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
 
 }
