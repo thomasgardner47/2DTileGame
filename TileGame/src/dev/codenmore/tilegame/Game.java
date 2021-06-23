@@ -1,15 +1,16 @@
 package dev.codenmore.tilegame;
 
-
-import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.Color;
+import java.awt.Graphics;
+
+
 
 // the main class for the game containing the most important code
 public class Game implements Runnable {
 
     // game class will need an instance of Display class
     private Display display;
-
 
     private BufferStrategy bs;
     private Graphics g; // allows us to draw things to the object
@@ -30,22 +31,24 @@ public class Game implements Runnable {
 
     }
 
-    private  void render() {
+    private void render() {
         bs = display.getCanvas().getBufferStrategy(); // this will set bs equal to whatever value BufferStrategy is
         if (bs == null) {
             display.getCanvas().createBufferStrategy(3);
             return;
         }
         g = bs.getDrawGraphics();
-
-        // clear screen
-        g.clearRect(0,0, width, height);
+        // Clear Screeb
+        g.clearRect(0, 0, width, height);
 
         // draw here!
 
-
         g.setColor(Color.red);
-        g.fillRect(10, 50, 50, 70);
+        g.drawRect(10, 50, 50, 70);
+        g.setColor(Color.green);
+        g.fillRect(0,0,10,10);
+
+
 
         // end drawing
         bs.show();
@@ -83,6 +86,8 @@ public class Game implements Runnable {
         if (running) {
             return;
         }
+
+        running = true;
         thread = new Thread(this);
         thread.start();
     }
