@@ -1,9 +1,11 @@
 package dev.codenmore.tilegame;
 
+import dev.codenmore.tilegame.gfx.ImageLoader;
+
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
 import java.awt.Graphics;
-
+import java.awt.image.BufferedImage;
 
 
 // the main class for the game containing the most important code
@@ -15,6 +17,8 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g; // allows us to draw things to the object
 
+    private BufferedImage testimage;
+
     public int width, height;
     public String title;
 
@@ -25,6 +29,8 @@ public class Game implements Runnable {
     // init method is called when run method is called
     private void init() {
         display = new Display(title, width, height);
+
+        testimage = ImageLoader.loadImage("/textures/aaaaaahh1.png");
     }
 
     private void tick() {
@@ -42,10 +48,12 @@ public class Game implements Runnable {
         g.clearRect(0, 0, width, height);
 
         // draw here!
-        g.setColor(Color.red);
-        g.drawRect(10, 50, 50, 70);
-        g.setColor(Color.green);
-        g.fillRect(0,0,10,10);
+//        g.setColor(Color.red);
+//        g.drawRect(10, 50, 50, 70);
+//        g.setColor(Color.green);
+//        g.fillRect(0,0,10,10);
+
+        g.drawImage(testimage, 20, 20, null);
 
         // end drawing
         bs.show();
