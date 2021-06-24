@@ -17,7 +17,7 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g; // allows us to draw things to the object
 
-    private BufferedImage testimage;
+   // private BufferedImage testimage;
 
     public int width, height;
     public String title;
@@ -30,7 +30,7 @@ public class Game implements Runnable {
     private void init() {
         display = new Display(title, width, height);
 
-        testimage = ImageLoader.loadImage("/textures/aaaaaahh1.png");
+        //testimage = ImageLoader.loadImage("/textures/aaaaaahh1.png");
     }
 
     private void tick() {
@@ -53,7 +53,7 @@ public class Game implements Runnable {
 //        g.setColor(Color.green);
 //        g.fillRect(0,0,10,10);
 
-        g.drawImage(testimage, 20, 20, null);
+        //g.drawImage(testimage, 20, 20, null); // this is called the image observer
 
         // end drawing
         bs.show();
