@@ -1,6 +1,7 @@
 package dev.codenmore.tilegame;
 
 import dev.codenmore.tilegame.gfx.ImageLoader;
+import dev.codenmore.tilegame.gfx.SpriteSheet;
 
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
@@ -19,6 +20,11 @@ public class Game implements Runnable {
 
    // private BufferedImage testimage;
 
+
+    private BufferedImage test;
+
+    private SpriteSheet sheet;
+
     public int width, height;
     public String title;
 
@@ -31,6 +37,9 @@ public class Game implements Runnable {
         display = new Display(title, width, height);
 
         //testimage = ImageLoader.loadImage("/textures/aaaaaahh1.png");
+        test = ImageLoader.loadImage("/textures/test.png");
+
+        sheet = new SpriteSheet(test);
     }
 
     private void tick() {
@@ -55,6 +64,7 @@ public class Game implements Runnable {
 
         //g.drawImage(testimage, 20, 20, null); // this is called the image observer
 
+        g.drawImage(sheet.crop(0, 0, 32, 32), 5, 5, null);
         // end drawing
         bs.show();
         g.dispose();
