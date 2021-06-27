@@ -1,5 +1,6 @@
 package dev.codenmore.tilegame;
 
+import dev.codenmore.tilegame.gfx.Assets;
 import dev.codenmore.tilegame.gfx.ImageLoader;
 import dev.codenmore.tilegame.gfx.SpriteSheet;
 
@@ -21,8 +22,8 @@ public class Game implements Runnable {
    // private BufferedImage testimage;
 
 
-    private BufferedImage test;
-    private SpriteSheet sheet;
+//    private BufferedImage test;
+//    private SpriteSheet sheet;
 
     public int width, height;
     public String title;
@@ -34,9 +35,10 @@ public class Game implements Runnable {
     // init method is called when run method is called
     private void init() {
         display = new Display(title, width, height);
+        Assets.init();
         //testimage = ImageLoader.loadImage("/textures/aaaaaahh1.png");
-        test = ImageLoader.loadImage("/textures/sheet.png");
-        sheet = new SpriteSheet(test);
+//        test = ImageLoader.loadImage("/textures/sheet.png");
+//        sheet = new SpriteSheet(test);
     }
 
     private void tick() {
@@ -61,7 +63,9 @@ public class Game implements Runnable {
 
         //g.drawImage(testimage, 20, 20, null); // this is called the image observer
 
-        g.drawImage(sheet.crop(0, 0, 32, 32), 5, 5, null); // this draws the player image to the canvas at position 5, 5 
+        // g.drawImage(sheet.crop(0, 0, 32, 32), 5, 5, null); // this draws the player image to the canvas at position 5, 5
+
+        g.drawImage(Assets.grass, 10, 10, null);
         // end drawing
         bs.show();
         g.dispose();
