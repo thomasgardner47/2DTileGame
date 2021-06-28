@@ -3,6 +3,8 @@ package dev.codenmore.tilegame;
 import dev.codenmore.tilegame.gfx.Assets;
 import dev.codenmore.tilegame.gfx.ImageLoader;
 import dev.codenmore.tilegame.gfx.SpriteSheet;
+import dev.codenmore.tilegame.states.GameState;
+import dev.codenmore.tilegame.states.State;
 
 import java.awt.image.BufferStrategy;
 import java.awt.Color;
@@ -18,6 +20,9 @@ public class Game implements Runnable {
 
     private BufferStrategy bs;
     private Graphics g; // allows us to draw things to the object
+
+    //States
+    private State gameState;
 
    // private BufferedImage testimage;
 
@@ -36,15 +41,21 @@ public class Game implements Runnable {
     private void init() {
         display = new Display(title, width, height);
         Assets.init();
+
+        gameState = new GameState();
+        State.setState(gameState);
         //testimage = ImageLoader.loadImage("/textures/aaaaaahh1.png");
 //        test = ImageLoader.loadImage("/textures/sheet.png");
 //        sheet = new SpriteSheet(test);
     }
 
-    int x = 0;
+    //int x = 0;
 
     private void tick() {
-        x += 1; // everytime the tick method is ran , i will increment the x variable by 1
+        //x += 1; // everytime the tick method is ran , i will increment the x variable by 1
+
+        if (State.getState() != null)
+            State.getState().tick();
     }
 
     private void render() {
@@ -67,7 +78,10 @@ public class Game implements Runnable {
 
         // g.drawImage(sheet.crop(0, 0, 32, 32), 5, 5, null); // this draws the player image to the canvas at position 5, 5
 
-        g.drawImage(Assets.grass, x, 10, null);
+        //g.drawImage(Assets.grass, x, 10, null);
+
+        if (State.getState() != null)
+            State.getState().render(g);
         // end drawing
         bs.show();
         g.dispose();
