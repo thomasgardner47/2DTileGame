@@ -41,8 +41,10 @@ public class Game implements Runnable {
 //        sheet = new SpriteSheet(test);
     }
 
-    private void tick() {
+    int x = 0;
 
+    private void tick() {
+        x += 1; // everytime the tick method is ran , i will increment the x variable by 1
     }
 
     private void render() {
@@ -65,7 +67,7 @@ public class Game implements Runnable {
 
         // g.drawImage(sheet.crop(0, 0, 32, 32), 5, 5, null); // this draws the player image to the canvas at position 5, 5
 
-        g.drawImage(Assets.grass, 10, 10, null);
+        g.drawImage(Assets.grass, x, 10, null);
         // end drawing
         bs.show();
         g.dispose();
@@ -84,9 +86,34 @@ public class Game implements Runnable {
     public void run() { // in order to allow this class too implement Runnable which in turn enables threading we need a public run method
 
         init();
+
+        int fps = 60; // this is the amount of times we want the tick and init methods to run
+        double timePerTick = 1000000000 / fps;
+        double delta = 0;
+        long now;
+        long lastTime = System.nanoTime(); // System.nanoTime returns the amount of time in nanoseconds at your computer is running at
+        long timer = 0;
+        int ticks = 0;
+
         while (running) { // while running is true we want the tick and render methods to keep running
-            tick();
-            render();
+
+            now = System.nanoTime();
+            delta += (now -  /*this will get the amount of time passed since the last time this line of code was executed */ lastTime) / timePerTick; // then after the calculation is done , we divide the amount of time by the maximum amount of time we are allowed to have to call the tick and render methods
+            timer += now - lastTime;
+            lastTime = now;
+
+            if ( delta >= 1) { // if the delta variable greater than or equal too the number 1 then we have to tick and render in order to achieve 60fps
+                tick();
+                render();
+                ticks++;
+                delta--;
+            }
+
+            if (timer  >= 1000000000) {
+                System.out.println("Ticks and Frames: " + ticks);
+                ticks = 0;
+                timer = 0;
+            }
         }
         Stop(); // just incase the game doesn't stop the first time
     }
