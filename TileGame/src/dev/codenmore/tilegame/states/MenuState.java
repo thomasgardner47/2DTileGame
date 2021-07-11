@@ -1,15 +1,12 @@
 package dev.codenmore.tilegame.states;
 
-import dev.codenmore.tilegame.gfx.Assets;
-
 import java.awt.*;
 
-public class GameState extends State {
+public class MenuState extends State {
 
-    public GameState() {
+    public MenuState() {
 
     }
-
 
     @Override
     public void tick() {

@@ -4,6 +4,7 @@ import dev.codenmore.tilegame.gfx.Assets;
 import dev.codenmore.tilegame.gfx.ImageLoader;
 import dev.codenmore.tilegame.gfx.SpriteSheet;
 import dev.codenmore.tilegame.states.GameState;
+import dev.codenmore.tilegame.states.MenuState;
 import dev.codenmore.tilegame.states.State;
 
 import java.awt.image.BufferStrategy;
@@ -23,6 +24,7 @@ public class Game implements Runnable {
 
     //States
     private State gameState;
+    private State menuState;
 
    // private BufferedImage testimage;
 
@@ -43,6 +45,7 @@ public class Game implements Runnable {
         Assets.init();
 
         gameState = new GameState();
+        menuState = new MenuState();
         State.setState(gameState);
         //testimage = ImageLoader.loadImage("/textures/aaaaaahh1.png");
 //        test = ImageLoader.loadImage("/textures/sheet.png");
@@ -86,6 +89,7 @@ public class Game implements Runnable {
         bs.show();
         g.dispose();
     }
+
 
     // creation of game constructor
     public Game(String title, int width, int height) {
