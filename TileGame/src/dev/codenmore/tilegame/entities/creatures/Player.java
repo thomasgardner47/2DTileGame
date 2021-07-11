@@ -1,5 +1,7 @@
 package dev.codenmore.tilegame.entities.creatures;
 
+import dev.codenmore.tilegame.gfx.Assets;
+
 import java.awt.*;
 
 public class Player extends Creature{
@@ -16,6 +18,6 @@ public class Player extends Creature{
 
     @Override
     public void render(Graphics g) {
-       69
+        g.drawImage(Assets.player, (int)x, (int)y, null);
     }
 }

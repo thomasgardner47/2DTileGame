@@ -26,6 +26,10 @@ public class Game implements Runnable {
     private State gameState;
     private State menuState;
 
+    //Input
+
+    private KeyManager keyManager;
+
    // private BufferedImage testimage;
 
 
@@ -42,10 +46,11 @@ public class Game implements Runnable {
     // init method is called when run method is called
     private void init() {
         display = new Display(title, width, height);
+        display.getFrame().addKeyListener(keyManager);
         Assets.init();
 
-        gameState = new GameState();
-        menuState = new MenuState();
+        gameState = new GameState(this);
+        menuState = new MenuState(this);
         State.setState(gameState);
         //testimage = ImageLoader.loadImage("/textures/aaaaaahh1.png");
 //        test = ImageLoader.loadImage("/textures/sheet.png");
@@ -97,6 +102,7 @@ public class Game implements Runnable {
         this.width = width;
         this.height = height;
         this.title = title;
+        keyManager = new KeyManager();
 
         // intialise instance of Display class inside Game constructor
     }
