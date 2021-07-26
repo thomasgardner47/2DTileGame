@@ -1,4 +1,4 @@
-package dev.codenmore.tilegame;
+package dev.codenmore.tilegame.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

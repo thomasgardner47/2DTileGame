@@ -1,16 +1,13 @@
 package dev.codenmore.tilegame;
 
 import dev.codenmore.tilegame.gfx.Assets;
-import dev.codenmore.tilegame.gfx.ImageLoader;
-import dev.codenmore.tilegame.gfx.SpriteSheet;
+import dev.codenmore.tilegame.input.KeyManager;
 import dev.codenmore.tilegame.states.GameState;
 import dev.codenmore.tilegame.states.MenuState;
 import dev.codenmore.tilegame.states.State;
 
 import java.awt.image.BufferStrategy;
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 
 // the main class for the game containing the most important code
@@ -61,6 +58,7 @@ public class Game implements Runnable {
 
     private void tick() {
         //x += 1; // everytime the tick method is ran , i will increment the x variable by 1
+        keyManager.tick();
 
         if (State.getState() != null)
             State.getState().tick();
@@ -140,6 +138,10 @@ public class Game implements Runnable {
             }
         }
         Stop(); // just incase the game doesn't stop the first time
+    }
+
+    public KeyManager getKeyManager() {
+        return keyManager;
     }
 
     // only use the synchronized keyword when working will threads directly
